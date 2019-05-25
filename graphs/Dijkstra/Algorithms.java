@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 import org.jgrapht.util.FibonacciHeap;
 import org.jgrapht.util.FibonacciHeapNode;
 
-public class Algorithms extends Graph {
+public class Algorithms {
 	
 	// Dijkstra's with min priority queue to return the shortest path length/weight
 	public static double dijkstraLength(Graph g, int source, int target) {
