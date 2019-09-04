@@ -9,3 +9,6 @@
 */.classpath
 */.project
 **/build
+**/.DS_Store
+**/target
+**/test/
