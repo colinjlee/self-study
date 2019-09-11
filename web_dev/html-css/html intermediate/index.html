@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intermediate HTML</title>
+</head>
+<body>
+    <!-- Tables -->
+    <!-- Note that styling is for CSS, in line border fine for now -->
+    <h2>Tables</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Coco</td>
+                <td>10</td>
+                <td>M</td>
+            </tr>
+    
+            <tr>
+                <td>Momo</td>
+                <td>2</td>
+                <td>F</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <!-- Forms/Inputs -->
+    <!-- Action - Where the form sends data to -->
+    <!-- Method - Which HTTP method -->
+    <h2>Forms/Inputs</h2>
+
+    <form>
+        <!-- Input nested inside label -->
+        <label for="">
+            Username:
+            <input type="text" name="username" id="" placeholder="Username" required>
+        </label>
+
+        <!-- Label and input paried through "for" and "id" -->
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <br>
+
+    <!-- Dropdowns/Buttons -->
+    <h2>Buttons/Dropdowns</h2>
+
+    <form action="">
+        <p>Gender:</p>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male">
+
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female">
+
+        <br>
+        <br>
+        <p>Languages:</p>
+        <label for="english">English</label>
+        <input type="checkbox" name="language" id="english">
+
+        <label for="spanish">Spanish</label>
+        <input type="checkbox" name="language" id="spanish">
+
+        <label for="french">French</label>
+        <input type="checkbox" name="language" id="french">
+
+        <label for="german">German</label>
+        <input type="checkbox" name="language" id="german">
+
+        <br>
+        <br>
+        <p>Color:</p>
+        <select name="" id="">
+            <option value="">Red</option>
+            <option value="">Orange</option>
+            <option value="">Yellow</option>
+            <option value="">Green</option>
+            <option value="">Blue</option>
+            <option value="">Purple</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

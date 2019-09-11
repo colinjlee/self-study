@@ -1,0 +1,40 @@
+/* 
+    Colors: 
+    1) Built in colors with words 
+    2) Hexadecimal - #FF34B0
+    3) rgb - rgb(0, 100, 255)
+    4) rgba - rgba(0, 100, 255, .5) transparency value
+*/
+
+h1 {
+    color: green;
+}
+
+h3 {
+    color: #ff0000;
+}
+
+li {
+    color: rgb(0, 100, 255);
+    background: rgba(25, 75, 100, 0.5)
+}
+
+/* 
+    Backgrounds and Borders
+*/
+
+h1 {
+    /* border-color: black;
+    border-width: 3px;
+    border-style: solid; */
+
+    /* Same as above */
+    border: 3px dashed black;
+}
+
+body {
+    background: pink;
+    /* background: url("http://1.bp.blogspot.com/-F9B7MrG9Vl8/T9uevPioqPI/AAAAAAAAACg/FQxPGkupdMk/s1600/cute+cat+pictures+(8).jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+}

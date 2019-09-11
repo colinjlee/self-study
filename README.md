@@ -9,6 +9,9 @@ Implementation of graph stuff
 ### Spring
 Java Spring framework with some Hibernate
 
+### Web Dev
+Web development technologies such as HTML, CSS, JS, Bootstrap, Jquery, etc.
+
 ### Follow along
 Follow along various coding tutorials with some personal adjustments
   1. Connect 4: https://www.youtube.com/watch?v=XpYz-q1lxu8

@@ -1,0 +1,54 @@
+/* 
+    Specificity - Which selectors take precedence on conflict
+    Element - 1
+    Class/Attribute/Pseudo-Class (:) - 10
+    ID - 100
+*/
+
+/* Star */
+* {
+    background: pink;
+}
+
+/* Element */
+li {
+    background: lightblue;
+}
+
+/* Class */
+.long-list {
+    background: gray;
+}
+
+/* Id */
+#countries {
+    background: lightgreen;
+}
+
+/* Descendant */
+li a {
+    border: 1px solid black;
+}
+
+/* Adjacent */
+h3 + ul {
+    border: 4px dashed white;
+}
+
+/* Attribute */
+a[href="http://www.google.com"] {
+    color: red;
+}
+
+/* Nth type */
+ul:nth-of-type(3) {
+    background: coral;
+}
+
+li:nth-of-type(even) {
+    background: crimson;
+}
+
+li:nth-child(3) {
+    background: chocolate;
+}
