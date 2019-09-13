@@ -1,0 +1,105 @@
+body {
+    background: #f5d9d5;
+    font-family: "Nunito", sans-serif;
+}
+
+#pic-1 {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1533323836708-9ed67edee77f");
+}
+
+#pic-2 {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1525059337994-6f2a1311b4d4");
+    background-position: center;
+}
+
+#pic-3 {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1544220828-1becb7f7b284")
+}
+
+#pic-4 {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1527275393322-8ddae8bd5de9");
+}
+
+.text-block h2 {
+    color: #ea1c2c;
+    font-weight: 100;
+    font-size: 3.5rem;
+}
+
+.text-block span {
+    color: #ea1c2c;
+    font-size: 2rem;
+}
+
+.navbar.scrolled {
+    background: #a4cddf;
+    transition: background 300ms;
+}
+
+#main-navbar {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+#main-navbar .nav-link {
+    color: white;
+}
+
+#main-navbar .nav-link:hover {
+    color: #ea1c2c;
+}
+
+#main-navbar .navbar-brand {
+    color: #ea1c2c;
+}
+
+#title-block span {
+    color: #ea1c2c;
+}
+
+#title-block h1 {
+    font-weight: 100;
+    font-size: 3.5rem;
+}
+
+@media (max-width: 767.98px) {
+    #main-navbar {
+        background: #a4cddf;
+    }
+
+    .text-block h2 {
+        font-size: 3.5rem;
+    }
+
+    .text-block p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 850px) {
+    .text-block h2 {
+        font-size: 2rem;
+    }
+
+    .text-block p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1250px) {
+    #title-block h1 {
+        font-size: 2.5rem;
+    }
+}

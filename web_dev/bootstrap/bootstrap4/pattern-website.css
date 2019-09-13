@@ -1,0 +1,11 @@
+#header {
+    background: url("https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80")
+}
+
+.text-outline {
+    text-shadow:
+        -1px -1px 2px #000,
+        1px -1px 2px #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}

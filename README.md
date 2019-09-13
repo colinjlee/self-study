@@ -1,16 +1,16 @@
 # Self Study
 
-### Interview Practice
-Various practice problems from the book Cracking the Coding Interview
-
-### Graphs
-Implementation of graph stuff
-
 ### Spring
 Java Spring framework with some Hibernate
 
 ### Web Dev
 Web development technologies such as HTML, CSS, JS, Bootstrap, Jquery, etc.
+
+### Interview Practice
+Various practice problems from the book Cracking the Coding Interview
+
+### Graphs
+Implementation of graph stuff
 
 ### Follow along
 Follow along various coding tutorials with some personal adjustments
