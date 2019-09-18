@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/28d3e3a3db.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/css/todos.css">
+
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Todo List<span id="inputToggleIcon"><i class="fas fa-minus"></i></span></h1> -->
+        <h1>Todo List
+            <div id="inputToggleIcon">
+                <div id="line1"></div>
+                <div id="line2"></div>
+                <!-- <span id="line1"></span>
+                <span id="line2"></span> -->
+            </div>
+        </h1>
+
+        <input type="text" placeholder="Add new todo">
+
+        <ul>
+            <li><span><i class="far fa-trash-alt"></i></span> Walk cat</li>
+            <li><span><i class="far fa-trash-alt"></i></span> Wash dishes</li>
+            <li><span><i class="far fa-trash-alt"></i></span> Take out trash</li>
+        </ul>
+    </div>
+    
+    <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/todos.js"></script>
+</body>
+</html>
