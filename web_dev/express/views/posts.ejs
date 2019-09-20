@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<h1>Posts Page</h1>
+
+<!-- 
+    <%= %>      Renders the return value to html
+    <% %>       For control flow logic
+-->
+<% posts.forEach((post) => { %>
+    <li>
+        <%= post.title %> - written by <strong><%= post.author %></strong>
+    </li>
+<% }) %>
+
+<% include partials/footer %>
