@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Campgrounds</h1>
+            <p>View the best campgrounds from all over the world!</p>
+            <div>
+                <a class="btn btn-primary btn-md" href="/campgrounds/new">Add New Campground</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <% campgrounds.forEach(campground => { %>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <img class="index card-img-top img-fluid" src="<%= campground.image %>">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= campground.name %></h4>
+                        <p class="card-text">
+                            <% if (campground.description) { %>
+                                <%= campground.description.substring(0, 100) %>...
+                            <% } else { %>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, commodi quos dignissimos quam aut ipsa numquam provident sint minus alias.
+                            <% } %>
+                        </p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-warning btn-md">Visit</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    
+</div>
+
+<% include ../partials/footer %>
