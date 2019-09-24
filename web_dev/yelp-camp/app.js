@@ -2,6 +2,7 @@
 const express           = require("express"),
       bodyParser        = require("body-parser"),
       mongoose          = require("mongoose"),
+      flash             = require("connect-flash"),
       passport          = require("passport"),
       LocalStrategy     = require("passport-local"),
       methodOverride    = require("method-override"),
@@ -27,6 +28,7 @@ const seedDB = require("./seeds");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(flash());
 app.use(methodOverride("_method"));
 app.use(require("express-session")({
     secret: "This is a secret",
@@ -38,6 +40,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.currUser = req.user;
+    res.locals.errorMessage = req.flash("error");
+    res.locals.successMessage = req.flash("success");
     next();
 });
 

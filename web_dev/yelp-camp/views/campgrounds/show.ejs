@@ -19,7 +19,15 @@
                 <img class="card-img-top img-fluid" src="<%= campground.image %>" alt="">
                 <div class="card-body">
                     <div class="caption-full">
-                        <h4 class="float-right">$9.99/night</h4>
+                        <h4 class="float-right">
+                            <% if (campground.price == 0) { %>
+                                Free!
+                            <% } else if(campground.price) { %>
+                                $<%= campground.price %>/night
+                            <% } else { %>
+                                $9.99/night
+                            <% } %>
+                        </h4>
                         <h4><a href="#"><%= campground.name %></a></h4>
                     </div>
                     <h6 class="card-subtitle mb-3 text-muted">Posted by <%= campground.author.username %></h6>

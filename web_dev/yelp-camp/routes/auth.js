@@ -7,7 +7,9 @@ const User = require("../models/user");
 // Sign up
 router.get("/register", (req, res) => {
     res.locals.title = "Sign Up";
-    res.render("register");
+    res.render("register", {
+        page: "register"
+    });
 });
 
 router.post("/register", (req, res) => {
@@ -16,9 +18,12 @@ router.post("/register", (req, res) => {
     User.register(userToRegister, req.body.password, (err, user) => {
         if (err) {
             console.log(err);
+            req.flash("error", err.message);
+            res.redirect("/register");
         } else {
             passport.authenticate("local")(req, res, () => {
-                res.redirect("/");
+                req.flash("success", "Welcome to YelpCamp!");
+                res.redirect("/campgrounds");
             });
         }
     });
@@ -27,7 +32,9 @@ router.post("/register", (req, res) => {
 // Login
 router.get("/login", (req, res) => {
     res.locals.title = "Login";
-    res.render("login");
+    res.render("login", {
+        page: "login"
+    });
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -40,7 +47,8 @@ router.post("/login", passport.authenticate("local", {
 // Logout
 router.get("/logout", (req, res) => {
     req.logout();
-    res.redirect("/");
+    req.flash("success", "Successfully logged out");
+    res.redirect("/campgrounds");
 });
 
 module.exports = router;

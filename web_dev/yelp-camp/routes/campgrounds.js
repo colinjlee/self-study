@@ -15,7 +15,8 @@ router.get("/", (req, res) => {
             console.log(err);
         } else {
             res.render("campgrounds/index", {
-                campgrounds: campgrounds
+                campgrounds: campgrounds,
+                page: "campgrounds"
             });
         }
     })
@@ -47,8 +48,9 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 // SHOW
 router.get("/:id", (req, res) => {
     Campground.findById(req.params.id).populate("comments").exec((err, campground) => {
-        if (err) {
-            console.log(err);
+        if (err || !campground) {
+            req.flash("error", "Campground not found");
+            res.redirect("back");
         } else {
             res.locals.title = campground.name;
 
