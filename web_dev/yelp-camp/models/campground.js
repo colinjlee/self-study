@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Comment = require("./comment");
 
 const campgroundSchema = new mongoose.Schema({
     name: String,
@@ -19,6 +20,18 @@ const campgroundSchema = new mongoose.Schema({
     ]
 });
 
-const Campground = mongoose.model("Campground", campgroundSchema);
+// Remove comments associated with campground when deleting campground
+campgroundSchema.pre("remove", async function(next) {
+    try {
+        await Comment.remove({
+            "_id": {
+                $in: this.comments
+            }
+        });
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
 
-module.exports = Campground;
+module.exports = mongoose.model("Campground", campgroundSchema);

@@ -24,20 +24,42 @@
                     </div>
                     <h6 class="card-subtitle mb-3 text-muted">Posted by <%= campground.author.username %></h6>
                     <p class="card-text"><%= campground.description %></p>
+
+                    <!-- Edit/Delete Buttons -->
+                    <% if (currUser && campground.author.id.equals(currUser._id)) { %>
+                        <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                        <form class="inline-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger float-right">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
 
             <!-- Comments -->
             <div class="card bg-light">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add Comment</a>
+                <div class="container text-right">
+                    <a class="btn btn-success mt-3 mb-3" href="/campgrounds/<%= campground._id %>/comments/new">Add Comment</a>
                 </div>
-                <hr>
-                <% campground.comments.forEach(comment => { %>
+
+                <% campground.comments.forEach((comment, index) => { %>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="container">
+                                <hr>
+
                                 <strong><%= comment.author.username %></strong>
+
+                                <!-- Edit/Delete Buttons -->
+                                <% if (currUser && comment.author.id.equals(currUser._id)) { %>
+                                    <span class="edit-comment-btn"><a class="ml-2 mr-2" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fas fa-pencil-alt"></i></a></span>
+                                    <span class="delete-comment-btn">
+                                        <form class="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                            method="POST">
+                                            <button><i class="far fa-trash-alt"></i></button>
+                                        </form>
+                                    </span>
+                                <% } %>
+
                                 <span class="float-right">10 days ago</span>
                                 <p><%= comment.text %></p>
                             </div>

@@ -8,6 +8,10 @@ body {
     padding-bottom: 35px;
 }
 
+hr {
+    margin: 5px 0;
+}
+
 footer {
     position: absolute;
     left: 0;
@@ -23,6 +27,20 @@ footer {
 
 .card {
     margin-bottom: 2rem;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.edit-comment-btn a {
+    color: #28a745;
+}
+
+.delete-comment-btn button {
+    border: none;
+    background-color: transparent;
+    color: red;
 }
 
 .index.card-img-top {
