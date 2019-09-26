@@ -33,19 +33,29 @@ footer {
     display: inline;
 }
 
-.edit-comment-btn a {
+.edit-btn-pencil a {
     color: #28a745;
 }
 
-.delete-comment-btn button {
+.delete-btn-trashcan button {
     border: none;
     background-color: transparent;
     color: red;
 }
 
+.list-group-camp-info {
+    /* position: fixed; */
+}
+
 .index.card-img-top {
     width: 100%;
     height: 10vw;
+    object-fit: cover;
+}
+
+.card-img-top.profile-picture {
+    width: 128px;
+    height: 128px;
     object-fit: cover;
 }
 
@@ -72,6 +82,13 @@ footer {
 @media (max-width: 992px) {
     .index.card-img-top {
         height: 30vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .list-group-camp-info {
+        position: relative;
+        margin-bottom: 2rem;
     }
 }
 

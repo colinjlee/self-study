@@ -32,12 +32,19 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    comment.author.id = req.user._id;
-                    comment.author.username = req.user.username;
-                    comment.save();
-                    
-                    campground.comments.push(comment);
-                    campground.save();
+                    comment.text = req.sanitize(comment.text);
+
+                    if (comment.text.length > 0) {
+                        comment.author.id = req.user._id;
+                        comment.author.username = req.user.username;
+                        comment.save();
+                        
+                        campground.comments.push(comment);
+                        campground.save();
+                    } else {
+                        req.flash("error", "Can't post empty comments");
+                    }
+
                     res.redirect(`/campgrounds/${campground._id}`);
                 }
             });
@@ -71,6 +78,8 @@ router.get("/:commentId/edit", middleware.checkCommentOwnership, (req, res) => {
 
 // UPDATE
 router.put("/:commentId", middleware.checkCommentOwnership, (req, res) => {
+    req.body.comment.text = req.sanitize(req.body.comment.text);
+
     Comment.findByIdAndUpdate(req.params.commentId, req.body.comment, (err, comment) => {
         if (err) {
             // Errors should have been handled by middleware

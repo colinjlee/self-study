@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <!-- Left column -->
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top img-fluid profile-picture" src="<%= user.avatar %>" alt="">
+                <div class="card-body">
+                    <div class="caption-full">
+                        <h4><%= user.username %></h4>
+                    </div>
+
+                    <div class="card-subtitle">
+                        <!-- Edit/Delete Buttons -->
+                        <% if (currUser && (user._id.equals(currUser._id) || currUser.isAdmin)) { %>
+                        <span class="edit-btn-pencil"><a class="mr-2"
+                                href="/users/<%= user._id %>/edit"><i
+                                    class="fas fa-pencil-alt"></i></a></span>
+                        <span class="delete-btn-trashcan">
+                            <form class="inline-form" action="/users/<%= user._id %>?_method=DELETE"
+                                method="POST">
+                                <button><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </span>
+                        <% } %>
+                    </div>
+                    <p class="card-text mt-3 mb-0"><%= user.firstName %> <%= user.lastName %></p>
+                    <p class="card-text"><%= user.email %></p>
+                    <p class="card-text"><%= user.bio %></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle column -->
+        <div class="col-md-6">
+            <h5><%= user.username %>'s Camps</h5>
+
+            <div class="row">
+                <% campgrounds.forEach(campground => { %>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card">
+                            <img class="index card-img-top img-fluid" src="<%= campground.image %>">
+                            <div class="card-body">
+                                <h6 class="card-title"><a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a></h6>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="col-md-3">
+            <h5><%= user.username %>'s Favorites</h5>
+
+            <ul>
+                <% favorites.forEach(campground => { %>
+                    <li><a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

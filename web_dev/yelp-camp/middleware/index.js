@@ -1,5 +1,6 @@
 const Campground = require("../models/campground"),
-      Comment = require("../models/comment");
+      Comment = require("../models/comment"),
+      User = require("../models/user");
 
 let middlewareObj = {};
 
@@ -22,8 +23,9 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
                 req.flash("error", "Campground not found");
                 res.redirect("back");
             } else {
-                // Need to be author of post
-                if (campground.author.id.equals(req.user._id)) {
+                // Need to be author of post or an admin
+                if (campground.author.id.equals(req.user._id)
+                    || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "You don't have permissions to do that");
@@ -47,8 +49,34 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
                 req.flash("error", "Comment not found");
                 res.redirect("back");
             } else {
-                // Need to be author of comment
-                if (comment.author.id.equals(req.user._id)) {
+                // Need to be author of comment or an admin
+                if (comment.author.id.equals(req.user._id)
+                    || req.user.isAdmin) {
+                    next();
+                } else {
+                    req.flash("error", "You don't have permissions to do that");
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        req.flash("error", "You must be logged in to do that");
+        res.redirect("back");
+    }
+}
+
+middlewareObj.checkProfileOwnership = (req, res, next) => {
+    // Need to be logged in
+    if (req.isAuthenticated()) {
+        User.findById(req.params.userId, (err, user) => {
+            if (err || !user) {
+                console.log(err);
+                req.flash("error", "User not found");
+                res.redirect("back");
+            } else {
+                // Need to be owner of profile or an admin
+                if (user._id.equals(req.user._id)
+                    || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "You don't have permissions to do that");

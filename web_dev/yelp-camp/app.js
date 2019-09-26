@@ -1,21 +1,22 @@
 // Libraries
 const express           = require("express"),
+      expressSanitizer  = require("express-sanitizer"),
       bodyParser        = require("body-parser"),
       mongoose          = require("mongoose"),
       flash             = require("connect-flash"),
       passport          = require("passport"),
       LocalStrategy     = require("passport-local"),
       methodOverride    = require("method-override"),
+      favicon           = require("serve-favicon"),
       app               = express();
 
 // Schemas
-const Campground        = require("./models/campground"),
-      User              = require("./models/user"),
-      Comment           = require("./models/comment");
+const User              = require("./models/user");
 
 // Routes
 const campgroundRoutes  = require("./routes/campgrounds"),
       commentRoutes     = require("./routes/comments"),
+      userRoutes        = require("./routes/users"),
       authRoutes        = require("./routes/auth");
 
 // Seed data
@@ -26,15 +27,19 @@ const seedDB = require("./seeds");
 
 // Express configs
 app.set("view engine", "ejs");
+app.use(favicon(__dirname + "/public/images/favicon.ico"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.use(require("express-session")({
     secret: "This is a secret",
     resave: false,
     saveUninitialized: false
 }));
+
+app.locals.moment = require("moment");
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,6 +53,7 @@ app.use((req, res, next) => {
 // Use route files
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/users", userRoutes);
 app.use("/", authRoutes);
 
 // Passport configs

@@ -7,6 +7,20 @@
             <p>View the best campgrounds from all over the world!</p>
             <div>
                 <a class="btn btn-primary btn-md" href="/campgrounds/new">Add New Campground</a>
+
+                <!-- Search bar -->
+                <!-- form-inline float-right -->
+                <form class="form-inline float-md-right mt-2 mt-md-0" action="/campgrounds" method="GET">
+                    <div class="form-row mb-0">
+                        <div class="col">
+                            <input class="form-control" type="text" name="search" placeholder="Search Campgrounds">
+                        </div>
+
+                        <div class="col">
+                            <input class="btn btn-warning" type="submit" value="Search">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </header>
