@@ -8,6 +8,7 @@ const express           = require("express"),
       LocalStrategy     = require("passport-local"),
       methodOverride    = require("method-override"),
       favicon           = require("serve-favicon"),
+      dotenv            = require("dotenv").config(),
       app               = express();
 
 // Schemas
@@ -62,9 +63,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Mongoose configs
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {
+mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+}).then(() => {
+    console.log("Connected to DB");
+}).catch(err => {
+    console.log("ERROR: " + err.message);
 });
 
 // End configs
@@ -78,6 +85,6 @@ app.get("/", (req, res) => {
     res.render("landing");
 });
 
-app.listen(3000, () => {
-    console.log("Yelp Camp server started");
-})
+app.listen(process.env.PORT, process.env.IP, () => {
+    console.log("YelpCamp server started on port " + process.env.PORT);
+});

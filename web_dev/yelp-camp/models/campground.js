@@ -8,6 +8,8 @@ const campgroundSchema = new mongoose.Schema({
     description: String,
     website: String,
     location: String,
+    lat: Number,
+    lng: Number,
     favorites: {
         type: Number,
         default: 0

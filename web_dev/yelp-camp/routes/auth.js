@@ -37,9 +37,11 @@ router.get("/login", (req, res) => {
     });
 });
 
+// https://stackoverflow.com/questions/13335881/redirecting-to-previous-page-after-authentication-in-node-js-using-passport-js
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/campgrounds",
-    failureRedirect: "/login"
+    successReturnToOrRedirect: "/campgrounds",
+    failureRedirect: "/login",
+    failureFlash: true
 }), (req, res) => {
     // Empty
 });
@@ -48,7 +50,8 @@ router.post("/login", passport.authenticate("local", {
 router.get("/logout", (req, res) => {
     req.logout();
     req.flash("success", "Successfully logged out");
-    res.redirect("/campgrounds");
+    delete req.session.returnTo;
+    res.redirect("back");
 });
 
 module.exports = router;

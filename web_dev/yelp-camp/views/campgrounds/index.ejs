@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 
 <div class="container">
+    <!-- Jumbotron header -->
     <header class="jumbotron" id="campgroundJumbotron">
         <div class="container">
             <h1><i class="fas fa-campground"></i> Campgrounds</h1>
@@ -25,7 +26,19 @@
         </div>
     </header>
 
+    <!-- Make rows of campgrounds -->
     <div class="row">
+        <!-- No campgrounds found message -->
+        <% if (campgrounds.length < 1) { %>
+            <div class="col-12">
+                <div class="card" id="noCampgroundCard">
+                    <div class="card-body">
+                        <h5>No campgrounds found</h5>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
         <% campgrounds.forEach(campground => { %>
             <div class="col-lg-3 col-sm-6">
                 <div class="card">
@@ -34,7 +47,7 @@
                         <h4 class="card-title"><%= campground.name %></h4>
                         <p class="card-text">
                             <% if (campground.description) { %>
-                                <%= campground.description.substring(0, 100) %>...
+                                <%= campground.description.substring(0, 100) %><% if (campground.description.length > 100) { %>...<%} %>
                             <% } else { %>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, commodi quos dignissimos quam aut ipsa numquam provident sint minus alias.
                             <% } %>
@@ -45,7 +58,80 @@
             </div>
         <% }) %>
     </div>
-    
+
+    <!-- Pages -->
+    <div class="row justify-content-center mb-2">
+        <% if (totalPages && totalPages > 0) { %>
+            <ul class="pagination">
+                <!-- 'First' and previous arrow buttons -->
+                <% if (currPage === 1) { %>
+                    <li class="page-item disabled"><a class="page-link">First</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/campgrounds<%if(search){%>&search=<%=search%><%}%>">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="/campgrounds?page=<%= currPage - 1 %><%if(search){%>&search=<%=search%><%}%>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <% } %>
+
+                <!-- Variable to show page numbers, currently +-2 from current page -->
+                <% let i = currPage > 3 ? currPage - 2 : 1 %>
+                <% if (i !== 1) { %>
+                    <li class="page-item disabled">
+                        <a class="page-link">...</a>
+                    </li>
+                <% } %>
+
+                <!-- Loop to show pages +-2 from current -->
+                <% for (; i <= currPage + 2 && i <= totalPages; i++) { %>
+                    <% if (i === currPage) { %>
+                        <li class="page-item active">
+                            <a class="page-link"><%= i %></a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/campgrounds?page=<%= i %><%if(search){%>&search=<%=search%><%}%>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <% if (i === currPage + 2 && i < totalPages) { %>
+                        <li class="page-item disabled">
+                            <a class="page-link">...</a>
+                        </li>
+                    <% } %>
+                <% } %>
+                
+                <!-- Next arrow and 'Last' buttons -->
+                <% if (currPage === totalPages) { %>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/campgrounds?page=<%= currPage + 1 %><%if(search){%>&search=<%=search%><%}%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link">Last</a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/campgrounds?page=<%= currPage + 1 %><%if(search){%>&search=<%=search%><%}%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="/campgrounds?page=<%= totalPages %><%if(search){%>&search=<%=search%><%}%>">Last</a>
+                    </li>
+                <% } %>
+            </ul>
+        <% } %>
+    </div>
 </div>
 
 <% include ../partials/footer %>

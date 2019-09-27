@@ -5,7 +5,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
-    avatar: String,
+    avatar: {
+        type: String,
+        default: "https://images.unsplash.com/photo-1552084117-56a987666449"
+    },
     bio: String,
     firstName: String,
     lastName: String,

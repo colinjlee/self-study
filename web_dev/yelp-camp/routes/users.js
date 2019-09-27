@@ -24,6 +24,7 @@ router.get("/:userId", (req, res) => {
                             res.redirect("back");
                         } else {
                             res.locals.title = `${user.username}'s profile`;
+                            req.session.returnTo = req.originalUrl;
                             res.render("users/show", {
                                 user: user,
                                 campgrounds: campgrounds,
@@ -71,7 +72,7 @@ router.delete("/:userId", middleware.checkProfileOwnership, (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            user.remove();
+            user.deleteOne();
             res.redirect("/campgrounds");
         }
     });

@@ -1,15 +1,29 @@
+const ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
+
 const Campground = require("../models/campground"),
       Comment = require("../models/comment"),
       User = require("../models/user");
 
 let middlewareObj = {};
 
+// middlewareObj.isLoggedIn = ensureLoggedIn("/login");
+
 middlewareObj.isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     } else {
+        req.session.returnTo = req.originalUrl;
         req.flash("error", "You must be logged in to do that");
         res.redirect("/login");
+    }
+}
+
+middlewareObj.isLoggedInToFavorite = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        req.flash("error", "You must be logged in to do that");
+        res.redirect(`/campgrounds/${req.params.id}`);
     }
 }
 
