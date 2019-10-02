@@ -12,7 +12,12 @@ const userSchema = new mongoose.Schema({
     bio: String,
     firstName: String,
     lastName: String,
-    email: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+    email: {
+        type: String,
+        unique: true
+    },
     isAdmin: {
         type: Boolean,
         default: false

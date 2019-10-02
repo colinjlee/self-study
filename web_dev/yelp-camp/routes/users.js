@@ -57,11 +57,21 @@ router.get("/:userId/edit", middleware.checkProfileOwnership, (req, res) => {
 router.put("/:userId", middleware.checkProfileOwnership, (req, res) => {
     req.body.editedUser.bio = req.sanitize(req.body.editedUser.bio);
 
-    User.findByIdAndUpdate(req.params.userId, req.body.editedUser, (err, user) => {
+    // Check if email already in use
+    User.findOne({ email: req.body.editedUser.email }, (err, user) => {
         if (err) {
             console.log(err);
+        } else if (!user || !req.body.editedUser.email) {
+            User.findByIdAndUpdate(req.params.userId, req.body.editedUser, (err, user) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect(`/users/${req.params.userId}`);
+                }
+            });
         } else {
-            res.redirect(`/users/${req.params.userId}`);
+            req.flash("error", "Email is already in use");
+            res.redirect("back");
         }
     });
 });
