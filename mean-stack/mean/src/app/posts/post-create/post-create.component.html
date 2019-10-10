@@ -1,0 +1,62 @@
+<!--
+  Property binding - [value] targets value porperty of underlying html
+                     Single quotes for actual string text
+  Local reference - #postInput marker variable that references the html element
+  Two way binding - [(ngModel)] combines setting and reading of value
+  Form models - Creation of javascript objects from form values
+                #postForm="ngForm" gives access to the object
+  Reactive Forms - Lets coder put more custom functionality (mime type validator)
+-->
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <!-- Event binding -->
+  <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
+    <!-- Title -->
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        formControlName="title"
+        placeholder="Title"
+        required>
+        <mat-error *ngIf="form.get('title').invalid">Please enter a title</mat-error>
+    </mat-form-field>
+
+    <!-- Body -->
+    <mat-form-field>
+      <textarea
+        matInput
+        name="content"
+        formControlName="content"
+        cols="30" rows="10"
+        placeholder="Post"
+        required></textarea>
+        <mat-error *ngIf="form.get('content').invalid">Please enter a post</mat-error>
+    </mat-form-field>
+
+    <!-- Image preview -->
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
+
+    <!-- Image/submit button -->
+    <div class="new-post-buttons">
+      <button
+        mat-raised-button type="button"
+        color="primary"
+        (click)="filePicker.click()">Pick Image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+
+      <button
+      mat-raised-button
+      color="primary"
+      type="submit">Save Post</button>
+
+    </div>
+
+    <mat-error class="image-error-label" *ngIf="showImageError && form.get('image').invalid">Please pick an image</mat-error>
+  </form>
+</mat-card>
+<!-- String interpolation -->
+<!-- <p>{{ newPost }}</p> -->

@@ -1,0 +1,18 @@
+main {
+  width: 80%;
+  margin: 1rem auto;
+}
+
+::ng-deep snack-bar-container.custom-class {
+  background-color: #f3f3f3;
+}
+
+::ng-deep snack-bar-container.custom-class span {
+  color: red;
+  font-weight: bold;
+}
+
+::ng-deep snack-bar-container.custom-class .mat-button .mat-button-wrapper {
+  color: black;
+  font-weight: normal;
+}

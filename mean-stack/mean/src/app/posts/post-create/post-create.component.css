@@ -1,0 +1,22 @@
+input[type="file"] {
+  visibility: hidden;
+}
+
+.new-post-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-preview {
+  height: 5rem;
+  margin-bottom: 1rem;
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+.image-error-label {
+  font-size: 12px;
+  margin-top: 5px;
+}
